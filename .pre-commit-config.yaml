@@ -22,7 +22,7 @@ repos:
       - id: markdownlint-cli2
   # The router-side code is POSIX shell (busybox ash); no-op until .sh / shebang files exist.
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.11.0.1
+    rev: v0.11.0.1-1
     hooks:
       - id: shellcheck
   # Workflow lint: actionlint (syntax/expressions/shellcheck of run steps) and zizmor
