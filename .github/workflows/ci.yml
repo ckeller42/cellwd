@@ -7,12 +7,15 @@ permissions:
   contents: read
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.13"
@@ -20,7 +23,8 @@ jobs:
         with:
           path: ~/.cache/pre-commit
           key: pre-commit-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml') }}
-      - run: pip install pre-commit
+      # Pinned like every other tool; bump together with a .pre-commit-config.yaml review.
+      - run: pip install "pre-commit==4.6.2"
       - run: pre-commit run --all-files --show-diff-on-failure
       # The gitleaks hook only scans staged changes, so it is a no-op under
       # --all-files. Scan the working tree with the same pinned version.

@@ -32,9 +32,11 @@ pre-commit run --all-files  # what CI runs
 ```
 
 `.pre-commit-config.yaml` pins every tool version (pre-commit-hooks, gitleaks,
-markdownlint-cli2, shellcheck); CI (`.github/workflows/ci.yml`) runs the same hooks plus a
-gitleaks scan of the whole working tree. Markdown rules live in `.markdownlint-cli2.jsonc`
-(line length 100). Shell code must be shellcheck-clean.
+markdownlint-cli2, shellcheck, actionlint, zizmor); CI (`.github/workflows/ci.yml`) runs the same
+hooks plus a gitleaks scan of the whole working tree, and pins `pre-commit` itself. Markdown rules
+live in `.markdownlint-cli2.jsonc` (line length 100). Shell code must be shellcheck-clean.
+Workflows must pass actionlint and zizmor (offline audits only); fix findings, or annotate with
+`# zizmor: ignore[<rule>]` and a reason.
 
 ## Never commit
 

@@ -25,3 +25,16 @@ repos:
     rev: v0.11.0.1
     hooks:
       - id: shellcheck
+  # Workflow lint: actionlint (syntax/expressions/shellcheck of run steps) and zizmor
+  # (workflow security audit). Both run in the CI pre-commit job.
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.12
+    hooks:
+      - id: actionlint
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: v1.30.1
+    hooks:
+      - id: zizmor
+        # Online audits (impostor commits, ref confusion) need a GitHub token; keep the hook
+        # deterministic and token-free.
+        args: [--no-online-audits]
