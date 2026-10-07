@@ -16,12 +16,12 @@ lint/CI setup. There is no code yet; everything below "planned" is the design, n
   2 minutes. Its behaviour and the incident that motivated it are in buspi-config's
   `WATCHDOGS.md` (Layer 4) and `ROUTER-tailscale-subnet.md`.
 - **Planned** (the cellwd package design spec and plan, kept local-only and not in any repo): a
-  dependency-free OpenWrt ipk. One POSIX-shell script (`/usr/sbin/cellwd`, busybox ash target) run by a procd service and
-  configured through uci (`/etc/config/cellwd`), tested with stubbed commands on `PATH`, and
-  built with `ar`/`tar` without the OpenWrt SDK.
+  dependency-free OpenWrt ipk. One POSIX-shell script (`/usr/sbin/cellwd`, busybox ash target) run
+  by a procd service and configured through uci (`/etc/config/cellwd`), tested with stubbed
+  commands on `PATH`, and built with `ar`/`tar` without the OpenWrt SDK.
 
-Until the full README lands (the README's "Task 15"), the design lives in those buspi-config
-documents. Read them before adding code, and don't treat the plan as implemented.
+Until the full README lands (the README's "Task 15"), the design lives only in those local-only
+notes. Ask the owner for them before adding code, and don't treat the plan as implemented.
 
 ## Checks
 
