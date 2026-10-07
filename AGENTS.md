@@ -15,8 +15,8 @@ lint/CI setup. There is no code yet; everything below "planned" is the design, n
   `router-cellwd.sh`, installed on the router as `/etc/cellwd.sh` and run by root's cron every
   2 minutes. Its behaviour and the incident that motivated it are in buspi-config's
   `WATCHDOGS.md` (Layer 4) and `ROUTER-tailscale-subnet.md`.
-- **Planned** (the cellwd package design spec and plan, kept local-only and not in any repo): a dependency-free OpenWrt ipk. One
-  POSIX-shell script (`/usr/sbin/cellwd`, busybox ash target) run by a procd service and
+- **Planned** (the cellwd package design spec and plan, kept local-only and not in any repo): a
+  dependency-free OpenWrt ipk. One POSIX-shell script (`/usr/sbin/cellwd`, busybox ash target) run by a procd service and
   configured through uci (`/etc/config/cellwd`), tested with stubbed commands on `PATH`, and
   built with `ar`/`tar` without the OpenWrt SDK.
 
