@@ -50,3 +50,14 @@ Workflows must pass actionlint and zizmor (offline audits only); fix findings, o
 - Branch off `main` and open a PR; don't push to `main` directly.
 - CI must be green, and review threads must be resolved before merging.
 - Commit subjects use the sibling repos' prefixes: `feat:`, `fix:`, `docs:`, `test:`, `chore:`.
+
+## Dependabot
+
+`.github/workflows/dependabot-auto-merge.yml` squash-merges a Dependabot PR once CI has passed
+on its exact head commit, but only when no bumped dependency is a semver major (it reads the
+`update-type` trailers; a grouped PR waits if any member is major). It does not rely on the
+repo's "Allow auto-merge" setting. Major bumps and anything CI rejects stay open for review.
+It also skips PRs without an `update-type` trailer, PRs with a commit not authored by Dependabot,
+and branches matching `EXCLUDE_REF_PREFIXES` (empty here). A merge made with the workflow's token
+does not start `push` workflows, so CI does not re-run on `main` afterwards; run it by hand if a
+bump needs it.

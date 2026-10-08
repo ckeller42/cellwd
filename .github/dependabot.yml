@@ -11,6 +11,8 @@ updates:
     groups:
       actions:
         patterns: ["*"]
+  # shellcheck-py publishes v0.11.0.1-1 after v0.11.0.1; Dependabot reads the older
+  # tag as an update, which would move the hook back.
   - package-ecosystem: pre-commit
     directory: /
     schedule:
@@ -19,6 +21,9 @@ updates:
       default-days: 7
     commit-message:
       prefix: chore
+    ignore:
+      - dependency-name: https://github.com/shellcheck-py/shellcheck-py
+        versions: ["0.11.0.1"]
     groups:
       hooks:
         patterns: ["*"]
